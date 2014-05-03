@@ -1,0 +1,31 @@
+package burp;
+
+
+public class BurpExtender
+{
+    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks)
+    {
+        callbacks.registerMenuItem("Hello World.", new CustomMenuItem());
+    }
+}
+
+
+class CustomMenuItem implements IMenuItemHandler
+{
+    public void menuItemClicked(String menuItemCaption, IHttpRequestResponse[] messageInfo)
+    {
+        try
+        {
+            System.out.println("Hello From Burp Suite!");
+            System.out.println("Request Item Details");
+            System.out.println("Host: " + messageInfo[0].getHost());
+            System.out.println("URL: " + messageInfo[0].getUrl());
+
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}
